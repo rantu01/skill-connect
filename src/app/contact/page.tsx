@@ -2,11 +2,10 @@
 
 import { Calendar, Mail, MapPin, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteLogo } from "@/components/SiteLogo";
+import { SiteHeader } from "@/components/SiteHeader";
 import {
   ADDRESS,
   ADDRESS_MAP_HREF,
@@ -55,20 +54,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" aria-label="Skills Connect home"><SiteLogo /></Link>
-          <nav className="hidden gap-6 text-sm font-medium text-muted-foreground lg:flex">
-            <Link href="/" className="hover:text-foreground">Home</Link>
-            <Link href="/services" className="hover:text-foreground">Services</Link>
-            <Link href="/industries" className="hover:text-foreground">Industries</Link>
-            <Link href="/resources" className="hover:text-foreground">Resources</Link>
-            <Link href="/blog" className="hover:text-foreground">Blogs</Link>
-            <Link href="/contact" className="text-foreground">Contact</Link>
-          </nav>
-          <Button variant="hero" size="sm" asChild><a href={PHONE_HREF}>Call {PHONE}</a></Button>
-        </div>
-      </header>
+      <SiteHeader ctaHref={PHONE_HREF} ctaLabel={`Call ${PHONE}`} ctaExternal={false} />
 
       <section className="relative overflow-hidden bg-hero-gradient px-6 py-20 text-primary-foreground sm:py-28">
         <div className="mx-auto max-w-6xl">

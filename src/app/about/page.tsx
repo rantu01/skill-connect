@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteLogo } from "@/components/SiteLogo";
+import { SiteHeader } from "@/components/SiteHeader";
 import { BOOKING_HREF, BOOKING_LABEL, QUIZ_HREF } from "@/lib/contact";
 
 const services = [
@@ -39,21 +39,7 @@ const iconMap: Record<string, any> = { Scale, BadgeCheck, Handshake, ShieldCheck
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" aria-label="Skills Connect home"><SiteLogo /></Link>
-          <nav className="hidden gap-6 text-sm font-medium text-muted-foreground lg:flex">
-            <Link href="/" className="hover:text-foreground">Home</Link>
-            <Link href="/about" className="text-foreground">About</Link>
-            <Link href="/services" className="hover:text-foreground">Services</Link>
-            <Link href="/industries" className="hover:text-foreground">Industries</Link>
-            <Link href="/resources" className="hover:text-foreground">Resources</Link>
-            <Link href="/blog" className="hover:text-foreground">Blogs</Link>
-            <Link href="/contact" className="hover:text-foreground">Contact</Link>
-          </nav>
-          <Button variant="hero" size="sm" asChild><a href={QUIZ_HREF} target="_blank" rel="noreferrer">Check if you qualify</a></Button>
-        </div>
-      </header>
+      <SiteHeader ctaHref={QUIZ_HREF} ctaLabel="Check if you qualify" />
 
       <main>
         <section className="relative overflow-hidden bg-hero-gradient text-primary-foreground">

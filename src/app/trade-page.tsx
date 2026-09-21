@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SiteLogo } from "@/components/SiteLogo";
+import { SiteHeader } from "@/components/SiteHeader";
 import { BOOKING_HREF, PHONE, PHONE_HREF } from "@/lib/contact";
 
 function IconComponent({ name }: { name: string }) {
@@ -24,20 +24,7 @@ function IconComponent({ name }: { name: string }) {
 export default function TradePage({ data }: { data: { slug: string; audience: string; h1: string; heroIntro: string; heroSteps: string[]; qualifications: { code: string; name: string; note: string }[]; evidenceItems: string[]; outcomeTabs: { id: string; label: string; icon: string; heading: string; intro: string; points: { title: string; body: string }[]; cta: string }[]; costOfInaction: { icon: string; staying: string; certified: string }[]; quizHeading: string; quizQuestions: { question: string; options: { label: string; score: number }[] }[]; faqHeading: string; faqs: { q: string; a: string }[] } }) {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" aria-label="Skills Connect home"><SiteLogo /></Link>
-          <nav className="hidden gap-6 text-sm font-medium text-muted-foreground lg:flex">
-            <Link href="/" className="hover:text-foreground">Home</Link>
-            <Link href="/services" className="hover:text-foreground">Services</Link>
-            <Link href="/industries" className="hover:text-foreground">Industries</Link>
-            <Link href="/resources" className="hover:text-foreground">Resources</Link>
-            <Link href="/blog" className="hover:text-foreground">Blogs</Link>
-            <Link href="/contact" className="hover:text-foreground">Contact</Link>
-          </nav>
-          <Button variant="hero" size="sm" asChild><a href="#quiz">Check eligibility</a></Button>
-        </div>
-      </header>
+      <SiteHeader ctaHref="#quiz" ctaLabel="Check eligibility" ctaExternal={false} />
 
       <section className="bg-hero-gradient text-primary-foreground">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
