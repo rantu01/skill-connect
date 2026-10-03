@@ -224,11 +224,11 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative">
-            <div className="overflow-hidden rounded-2xl border border-primary-foreground/15 shadow-card">
+            <div className="h-[300px] overflow-hidden rounded-2xl border border-primary-foreground/15 shadow-card sm:h-[360px] lg:h-[440px]">
               <img
-                src="/hero-tradesperson.jpg"
-                width={1600}
-                height={1200}
+                src="/assets/Hero.png"
+                width={200}
+                height={200}
                 alt="Licensed Australian tradesperson reviewing an evidence portfolio on a construction site"
                 className="h-full w-full object-cover"
               />

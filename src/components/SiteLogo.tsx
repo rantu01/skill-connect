@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 export function SiteLogo({ className }: { className?: string }) {
   return (
     <img
-      src="/skills-connect-logo.png"
+      src="/assets/skills-connect-hub-logo.png"
       alt="Skills Connect"
       width={354}
       height={152}
