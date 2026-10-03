@@ -7,7 +7,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StickyQuizBar } from "@/components/StickyQuizBar";
-import { BOOKING_HREF, BOOKING_LABEL, QUIZ_HREF, QUIZ_LABEL } from "@/lib/contact";
+import { BOOKING_HREF, BOOKING_LABEL, QUIZ_LABEL } from "@/lib/contact";
 import heroImage from "@/assets/hero-tradesperson.jpg";
 
 export const metadata = {
@@ -107,14 +107,14 @@ const tools = [
     title: "RPL Readiness Quiz",
     body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.",
     cta: "Start the RPL quiz",
-    href: QUIZ_HREF,
+    href: "/skills-check",
   },
   {
     icon: "PlaneTakeoff",
     title: "Skills Assessment for Visa Readiness Quiz",
     body: "The same 2-minute check read against migration requirements: ANZSCO occupation match, employment reference quality and document coverage for TRA or VETASSESS.",
     cta: "Check visa readiness",
-    href: QUIZ_HREF,
+    href: "/skills-check",
   },
   {
     icon: "FileCheck2",
@@ -203,10 +203,10 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button variant="hero" size="xl" asChild>
-                <a href={QUIZ_HREF} target="_blank" rel="noreferrer">
+                <Link href="/skills-check">
                   Take the 2-minute eligibility quiz
                   <ArrowRight />
-                </a>
+                </Link>
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
                 <a href={BOOKING_HREF} target="_blank" rel="noreferrer">{BOOKING_LABEL}</a>
@@ -415,15 +415,17 @@ export default function HomePage() {
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
                 <p className="mt-2 flex-1 text-sm text-muted-foreground">{body}</p>
                 <Button variant="outline" className="mt-6 self-start" asChild>
-                  <a
-                    href={href}
-                    {...(href.startsWith("#") || href.startsWith("/resources")
-                      ? {}
-                      : { target: "_blank", rel: "noopener noreferrer" })}
-                  >
-                    {cta}
-                    <ArrowRight />
-                  </a>
+                  {href.startsWith("http") ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer">
+                      {cta}
+                      <ArrowRight />
+                    </a>
+                  ) : (
+                    <Link href={href}>
+                      {cta}
+                      <ArrowRight />
+                    </Link>
+                  )}
                 </Button>
               </div>
             ))}
@@ -444,10 +446,10 @@ export default function HomePage() {
               professional step.
             </p>
             <Button variant="hero" size="xl" className="mt-8" asChild>
-              <a href={QUIZ_HREF} target="_blank" rel="noreferrer">
+              <Link href="/skills-check">
                 {QUIZ_LABEL}
                 <ArrowRight />
-              </a>
+              </Link>
             </Button>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -480,9 +482,9 @@ export default function HomePage() {
               <a href={BOOKING_HREF} target="_blank" rel="noreferrer">{BOOKING_LABEL}</a>
             </Button>
             <Button variant="outline" size="xl" asChild>
-              <a href={QUIZ_HREF} target="_blank" rel="noreferrer">
+              <Link href="/skills-check">
                 Take the readiness quiz
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

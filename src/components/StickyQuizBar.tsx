@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, X } from "lucide-react";
 
-import { QUIZ_HREF } from "@/lib/contact";
 import { trackEvent } from "@/lib/analytics";
 
 export function StickyQuizBar() {
@@ -41,16 +41,14 @@ export function StickyQuizBar() {
           is worth in 60 seconds.
         </p>
         <div className="flex items-center gap-2">
-          <a
-            href={QUIZ_HREF}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            href="/skills-check"
             onClick={() => trackEvent("quiz_sticky_bar_click")}
             className="inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
           >
             Take the free skills check
             <ArrowRight className="size-4" />
-          </a>
+          </Link>
           <button
             type="button"
             onClick={dismiss}
