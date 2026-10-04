@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { GuidesDirectory } from "@/components/resources/GuidesDirectory";
 import { LicenceFormsSection } from "@/components/resources/LicenceFormsSection";
 import { RplGuideDirectory } from "@/components/resources/RplGuideDirectory";
 import { BOOKING_HREF, BOOKING_LABEL, QUIZ_HREF } from "@/lib/contact";
+import { RPL_BROAD_INDUSTRIES, countGuidesByBroadIndustry } from "@/lib/rpl-guides";
 
 const resources = [
   { icon: ClipboardList, title: "RPL Readiness Quiz", body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.", cta: "Start the RPL quiz", href: QUIZ_HREF },
@@ -51,12 +53,26 @@ export default function ResourcesPage() {
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl">RPL evidence portfolio guides by trade</h2>
           <p className="mt-4 max-w-2xl text-muted-foreground">Trade-by-trade guides showing exactly which photos, videos and documents an independent RTO needs. Read them online or download a printable PDF to take to work.</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl border border-border bg-card p-5 shadow-card"><p className="font-semibold">Building & Construction</p><p className="mt-1 text-sm text-muted-foreground">8 guides available</p><Link href="/rpl-evidence-guides" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">Browse guides</Link></div>
-            <div className="rounded-xl border border-border bg-card p-5 shadow-card"><p className="font-semibold">Automotive</p><p className="mt-1 text-sm text-muted-foreground">6 guides available</p><Link href="/rpl-evidence-guides" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">Browse guides</Link></div>
-            <div className="rounded-xl border border-border bg-card p-5 shadow-card"><p className="font-semibold">Community & Health</p><p className="mt-1 text-sm text-muted-foreground">9 guides available</p><Link href="/rpl-evidence-guides" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">Browse guides</Link></div>
-            <div className="rounded-xl border border-border bg-card p-5 shadow-card"><p className="font-semibold">Hospitality & Commercial Cookery</p><p className="mt-1 text-sm text-muted-foreground">4 guides available</p><Link href="/rpl-evidence-guides" className="mt-3 inline-block text-sm font-semibold text-accent hover:underline">Browse guides</Link></div>
+            {RPL_BROAD_INDUSTRIES.map((name) => {
+              const count = countGuidesByBroadIndustry(name);
+              return (
+                <div key={name} className="rounded-xl border border-border bg-card p-5 shadow-card">
+                  <p className="font-semibold">{name}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{count} guide{count === 1 ? "" : "s"} available</p>
+                  <Link
+                    href={`/rpl-evidence-guides?industry=${encodeURIComponent(name)}`}
+                    className="mt-3 inline-block text-sm font-semibold text-accent hover:underline"
+                  >
+                    Browse guides
+                  </Link>
+                </div>
+              );
+            })}
           </div>
           <div className="mt-8"><Button variant="hero" size="lg" asChild><Link href="/rpl-evidence-guides">See all evidence guides</Link></Button></div>
+          <div className="mt-12 border-t border-border pt-10">
+            <GuidesDirectory anchor="rpl-evidence-guides" />
+          </div>
         </div>
       </section>
 
