@@ -11,8 +11,8 @@ import { BOOKING_HREF, BOOKING_LABEL, QUIZ_HREF } from "@/lib/contact";
 import { RPL_BROAD_INDUSTRIES, countGuidesByBroadIndustry } from "@/lib/rpl-guides";
 
 const resources = [
-  { icon: ClipboardList, title: "RPL Readiness Quiz", body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.", cta: "Start the RPL quiz", href: QUIZ_HREF },
-  { icon: PlaneTakeoff, title: "Skills Assessment for Visa Readiness Quiz", body: "The same 2-minute check read against migration requirements: ANZSCO occupation match, employment reference quality and document coverage for TRA or VETASSESS.", cta: "Check visa readiness", href: QUIZ_HREF },
+  { icon: ClipboardList, title: "RPL Readiness Quiz", body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.", cta: "Start the RPL quiz", href: "/rpl-readiness" },
+  { icon: PlaneTakeoff, title: "Skills Assessment for Visa Readiness Quiz", body: "The same 2-minute check read against migration requirements: ANZSCO occupation match, employment reference quality and document coverage for TRA or VETASSESS.", cta: "Check visa readiness", href: "/visa-readiness" },
   { icon: FileCheck2, title: "Trade-specific RPL evidence checklists", body: "Downloadable guides such as the Carpentry Evidence Vault Checklist and the Community Services Duty-Mapping Guide.", cta: "Get a checklist", href: "#rpl-evidence-guides" },
   { icon: Globe2, title: "Skills assessment Document checklist", body: "Reference letter structures, bank statement proofing and ANZSCO task mapping criteria for TRA and VETASSESS.", cta: "Download the guide", href: "#migration-forms" },
 ];
@@ -39,7 +39,13 @@ export default function ResourcesPage() {
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
                 <p className="mt-2 flex-1 text-sm text-muted-foreground">{body}</p>
                 <Button variant="outline" className="mt-6 self-start" asChild>
-                  <a href={href} {...(href.startsWith("#") ? {} : { target: "_blank", rel: "noopener noreferrer" })}>{cta}</a>
+                  {href.startsWith("#") ? (
+                    <a href={href}>{cta}</a>
+                  ) : href.startsWith("/") ? (
+                    <Link href={href}>{cta}</Link>
+                  ) : (
+                    <a href={href} target="_blank" rel="noopener noreferrer">{cta}</a>
+                  )}
                 </Button>
               </div>
             ))}
