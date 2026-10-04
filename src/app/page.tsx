@@ -107,14 +107,14 @@ const tools = [
     title: "RPL Readiness Quiz",
     body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.",
     cta: "Start the RPL quiz",
-    href: "/skills-check",
+    href: "/rpl-readiness",
   },
   {
     icon: "PlaneTakeoff",
     title: "Skills Assessment for Visa Readiness Quiz",
     body: "The same 2-minute check read against migration requirements: ANZSCO occupation match, employment reference quality and document coverage for TRA or VETASSESS.",
     cta: "Check visa readiness",
-    href: "/skills-check",
+    href: "/visa-readiness",
   },
   {
     icon: "FileCheck2",
