@@ -4,13 +4,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
-const posts = [
-  { title: "How RPL works for tradies", slug: "how-rpl-works", date: "2026-01-15", excerpt: "A step-by-step guide to Recognition of Prior Learning for trades." },
-  { title: "Evidence portfolio checklist", slug: "evidence-checklist", date: "2026-02-01", excerpt: "What documents you need to prove your trade experience." },
-  { title: "State licensing differences", slug: "state-licensing", date: "2026-02-20", excerpt: "How licensing requirements differ across Australian states." },
-  { title: "RPL vs apprenticeship", slug: "rpl-vs-apprenticeship", date: "2026-03-10", excerpt: "Which pathway is right for your experience level?" },
-];
+const posts = BLOG_POSTS;
 
 export default function BlogPage() {
   return (
