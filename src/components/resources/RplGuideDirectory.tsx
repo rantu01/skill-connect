@@ -6,12 +6,12 @@ import { ArrowRight, BookOpen, ChevronRight, ClipboardCheck, FileText, MapPin, S
 import Link from "next/link";
 
 const guideData = [
-  { title: "Carpenter RPL guide", slug: "carpenter", desc: "Evidence portfolio for carpentry RPL." },
-  { title: "Bricklayer RPL guide", slug: "bricklayer", desc: "Evidence portfolio for bricklaying RPL." },
-  { title: "Concreter RPL guide", slug: "concreter", desc: "Evidence portfolio for concreting RPL." },
-  { title: "Electrician RPL guide", slug: "electrician", desc: "Evidence portfolio for electrician RPL." },
-  { title: "Plumber RPL guide", slug: "plumber", desc: "Evidence portfolio for plumber RPL." },
-  { title: "Mechanic RPL guide", slug: "mechanic", desc: "Evidence portfolio for mechanic RPL." },
+  { title: "Carpentry RPL guide", slug: "carpentry", desc: "Evidence portfolio for carpentry RPL (CPC30220)." },
+  { title: "Bricklaying RPL guide", slug: "bricklaying", desc: "Evidence portfolio for bricklaying RPL (CPC33020)." },
+  { title: "Concreting RPL guide", slug: "concreting", desc: "Evidence portfolio for concreting RPL (CPC30320)." },
+  { title: "Light Vehicle Mechanic RPL guide", slug: "light-vehicle-mechanic", desc: "Evidence portfolio for light vehicle mechanic RPL (AUR30620)." },
+  { title: "Commercial Cookery RPL guide", slug: "commercial-cookery", desc: "Evidence portfolio for commercial cookery RPL (SIT30821)." },
+  { title: "Community Services RPL guide", slug: "community-services", desc: "Evidence portfolio for community services RPL (CHC52021)." },
 ];
 
 export function RplGuideDirectory() {
@@ -34,7 +34,7 @@ export function RplGuideDirectory() {
                 </div>
                 <div className="mt-5 flex items-center gap-3">
                   <Button variant="hero" size="sm" asChild><Link href={`/rpl-evidence-guides/${guide.slug}`}>Read guide<ArrowRight className="size-3.5" /></Link></Button>
-                  <Button variant="outline" size="sm" asChild><Link href={`/rpl-evidence-guides/${guide.slug}/download`}>Download</Link></Button>
+                  <Button variant="outline" size="sm" asChild><Link href="/rpl-evidence-guides">All guides</Link></Button>
                 </div>
               </CardContent>
             </Card>
