@@ -177,6 +177,218 @@
   box-shadow: var(--shadow-card);
 }
 
+@utility bg-accent-soft {
+  background-color: color-mix(in oklch, var(--color-accent) 7%, var(--color-background));
+}
+
+/* Table readability polish */
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: color-mix(in oklch, var(--color-accent) 8%, transparent);
+}
+
+/* Global card interaction (homepage uses the same language) */
+section [class*="shadow-card"] {
+  transition:
+    translate 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+section [class*="shadow-card"]:hover {
+  translate: 0 -4px;
+  border-color: color-mix(in oklch, var(--color-accent) 55%, var(--color-border));
+  box-shadow:
+    0 2px 4px oklch(0.341 0.024 291.6 / 0.06),
+    0 18px 40px -18px oklch(0.341 0.024 291.6 / 0.45);
+}
+
+/* ---- Homepage animation system ---- */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes icon-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+.reveal.is-in-view {
+  opacity: 1;
+  transform: none;
+  animation: reveal-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(14px);
+}
+
+.reveal-scale.is-in-view {
+  opacity: 1;
+  transform: none;
+  animation: reveal-scale-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+.icon-pop {
+  display: inline-flex;
+}
+
+.reveal.is-in-view .icon-pop,
+.is-in-view .icon-pop {
+  animation: icon-pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) + 160ms);
+}
+
+.group:hover .icon-pop {
+  animation: none;
+}
+
+.animate-card-in {
+  animation: card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--card-delay, 0ms);
+}
+
+@keyframes stat-in {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-stat {
+  animation:
+    stat-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both,
+    float-y 6s ease-in-out 1.4s infinite;
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-visual {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-hero {
+  animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+.animate-hero-visual {
+  animation: hero-visual 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .reveal {
+    transform: translateY(14px);
+  }
+  .reveal-scale {
+    transform: scale(0.98) translateY(8px);
+  }
+  .animate-float,
+  .animate-stat {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .animate-card-in,
+  .animate-stat,
+  .animate-hero,
+  .animate-hero-visual,
+  .animate-float {
+    animation: none;
+  }
+  .is-in-view .icon-pop {
+    animation: none;
+  }
+}
+
 @layer base {
   .section-eyebrow {
     font-family: var(--font-display);

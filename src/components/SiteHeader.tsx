@@ -47,7 +47,7 @@ export function SiteHeader({
               key={link.href}
               href={link.href}
               className={cn(
-                "hover:text-foreground",
+                "transition-colors duration-200 hover:text-foreground",
                 pathname === link.href && "text-foreground"
               )}
             >
