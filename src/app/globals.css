@@ -190,6 +190,45 @@ tbody tr:hover {
   background-color: color-mix(in oklch, var(--color-accent) 8%, transparent);
 }
 
+/* Shared subtle interaction language (all pages reuse the homepage feel) */
+a {
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  text-underline-offset: 4px;
+}
+
+input,
+textarea,
+select {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+details {
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+details > summary {
+  transition: color 0.2s ease;
+}
+
+/* Generic card border smoothing — lift/shadow stays on shadow-card only
+   so non-interactive blocks don't feel flashy. */
+section article[class*="rounded"],
+section div[class*="rounded-xl"],
+section li[class*="rounded"],
+section details[class*="rounded"] {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
 /* Global card interaction (homepage uses the same language) */
 section [class*="shadow-card"] {
   transition:
@@ -386,6 +425,14 @@ section [class*="shadow-card"]:hover {
   }
   .is-in-view .icon-pop {
     animation: none;
+  }
+  a,
+  input,
+  textarea,
+  select,
+  details,
+  details > summary {
+    transition: none;
   }
 }
 
