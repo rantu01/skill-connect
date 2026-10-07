@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 import { Button } from "@/components/ui/button";
 import { IndustryMatrix } from "@/components/home/IndustryMatrix";
@@ -107,14 +108,14 @@ const tools = [
     title: "RPL Readiness Quiz",
     body: "A 2-minute check on experience years, tax and pay records and on-site photo availability, giving you an instant Portfolio Readiness Score for a qualification.",
     cta: "Start the RPL quiz",
-    href: "/skills-check",
+    href: "/rpl-readiness",
   },
   {
     icon: "PlaneTakeoff",
     title: "Skills Assessment for Visa Readiness Quiz",
     body: "The same 2-minute check read against migration requirements: ANZSCO occupation match, employment reference quality and document coverage for TRA or VETASSESS.",
     cta: "Check visa readiness",
-    href: "/skills-check",
+    href: "/visa-readiness",
   },
   {
     icon: "FileCheck2",
@@ -186,22 +187,24 @@ export default function HomePage() {
       <SiteHeader />
 
       <section className="relative overflow-hidden bg-hero-gradient text-primary-foreground">
+        <div className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-accent/10 blur-3xl animate-float" />
+        <div className="pointer-events-none absolute -bottom-32 -left-24 size-80 rounded-full bg-primary-foreground/5 blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-28">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold tracking-wide uppercase">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold tracking-wide uppercase animate-hero">
               Recognition of Prior Learning specialists
             </span>
-            <h1 className="mt-6 text-4xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 text-4xl leading-[1.05] font-bold sm:text-5xl lg:text-6xl animate-hero" style={{ "--hero-delay": "80ms" } as CSSProperties}>
               Turn your workplace experience into recognised qualifications, trade licences and
               skills assessment outcome
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-primary-foreground/80">
+            <p className="mt-6 max-w-xl text-lg text-primary-foreground/80 animate-hero" style={{ "--hero-delay": "180ms" } as CSSProperties}>
               Don't waste time studying what you already know. We help experienced workers,
               tradespeople and skilled migrants audit and structure workplace evidence into
               decision-ready portfolios for independent RTO evaluation, state licensing and
               migration skills assessments.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 animate-hero" style={{ "--hero-delay": "280ms" } as CSSProperties}>
               <Button variant="hero" size="xl" asChild>
                 <Link href="/skills-check">
                   Take the 2-minute eligibility quiz
@@ -212,7 +215,7 @@ export default function HomePage() {
                 <a href={BOOKING_HREF} target="_blank" rel="noreferrer">{BOOKING_LABEL}</a>
               </Button>
             </div>
-            <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-primary-foreground/70">
+            <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-primary-foreground/70 animate-hero" style={{ "--hero-delay": "380ms" } as CSSProperties}>
               {["Your experience", "RPL evidence portfolio", "RTO qualification", "Licence", "Skills Assessment Outcome"].map(
                 (label, i) => (
                   <span key={label} className="flex items-center gap-3">
@@ -223,17 +226,17 @@ export default function HomePage() {
               )}
             </div>
           </div>
-          <div className="relative">
+          <div className="relative animate-hero" style={{ "--hero-delay": "200ms" } as CSSProperties}>
             <div className="h-[300px] overflow-hidden rounded-2xl border border-primary-foreground/15 shadow-card sm:h-[360px] lg:h-[440px]">
               <img
-                src="/assets/Hero.png"
+                src="/assets/hero-tradesperson.jpg"
                 width={200}
                 height={200}
                 alt="Licensed Australian tradesperson reviewing an evidence portfolio on a construction site"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover animate-hero-visual"
               />
             </div>
-            <div className="absolute -bottom-6 left-6 rounded-xl bg-card px-5 py-4 text-card-foreground shadow-card">
+            <div className="absolute -bottom-6 left-6 rounded-xl bg-card px-5 py-4 text-card-foreground shadow-card animate-stat">
               <p className="font-display text-2xl font-bold">25–60%</p>
               <p className="text-xs text-muted-foreground">
                 typical rate uplift after licensing
@@ -245,14 +248,14 @@ export default function HomePage() {
 
       <section className="border-b border-border bg-secondary py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow">Our three core services</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+          <p className="section-eyebrow reveal" data-reveal>Our three core services</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             RPL Portfolio Preparation, Licensing Service and Skills Assessment
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {impact.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="rounded-xl border border-border bg-card p-6 shadow-card">
-                <span className="inline-flex size-10 items-center justify-center rounded-lg bg-accent-gradient text-accent-foreground">
+            {impact.map(({ icon: Icon, title, body }, i) => (
+              <div key={title} data-reveal style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties} className="reveal group rounded-xl border border-border bg-card hover:border-accent/60 p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <span className="inline-flex size-10 items-center justify-center rounded-lg icon-pop bg-accent-gradient text-accent-foreground transition-transform duration-300 group-hover:scale-110">
                   <IconComponent name={iconMap[Icon] ?? Icon} />
                 </span>
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
@@ -265,29 +268,31 @@ export default function HomePage() {
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow">What we do</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+          <p className="section-eyebrow reveal" data-reveal>What we do</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             Guidance built around your career goals
           </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-muted-foreground reveal" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
             We help you understand your career options, assess your readiness and navigate the
             requirements that may apply to your chosen pathway.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {careerGoals.map((item) => (
+            {careerGoals.map((item, i) => (
               <article
                 key={item.title}
-                className="flex flex-col rounded-xl border border-border bg-card p-7 shadow-card"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+                className="reveal flex flex-col rounded-xl border border-border bg-card hover:border-accent/60 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className="section-eyebrow">{item.step}</span>
                 <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
                 <p className="mt-3 flex-1 text-sm text-muted-foreground">{item.body}</p>
                 <Link
                   href={item.to}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
+                  className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
                 >
                   {item.cta}
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </article>
             ))}
@@ -297,17 +302,19 @@ export default function HomePage() {
 
       <section id="services" className="py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow">Core service pillars</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+          <p className="section-eyebrow reveal" data-reveal>Core service pillars</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             How RPL integrates with every service
           </h2>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {pillars.map(({ icon: Icon, name, goal, role, boundary }) => (
+            {pillars.map(({ icon: Icon, name, goal, role, boundary }, i) => (
               <article
                 key={name}
-                className="flex flex-col rounded-xl border border-border bg-card p-7 shadow-card"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+                className="reveal group flex flex-col rounded-xl border border-border bg-card hover:border-accent/60 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
-                <span className="inline-flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <span className="inline-flex size-11 items-center justify-center rounded-lg icon-pop bg-primary text-primary-foreground transition-transform duration-300 group-hover:scale-110">
                   <IconComponent name={iconMap[Icon] ?? Icon} />
                 </span>
                 <h3 className="mt-5 text-xl font-semibold">{name}</h3>
@@ -333,13 +340,13 @@ export default function HomePage() {
 
       <IndustryMatrix />
 
-      <section id="how-rpl-works" className="py-20 sm:py-28">
+      <section id="how-rpl-works" className="bg-accent-soft py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow">How RPL works</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+          <p className="section-eyebrow reveal" data-reveal>How RPL works</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
             Turn experience into formal recognition in four stages
           </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-muted-foreground reveal" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
             Recognition of Prior Learning (RPL) compares your real-world work history against the
             units in a formal qualification. We help you collect, map and present that evidence so an
             independent RTO can assess it.
@@ -366,12 +373,14 @@ export default function HomePage() {
                 title: "Recognition outcome",
                 body: "The RTO issues credit for what you already know, so you can move toward licensing or a skills assessment.",
               },
-            ].map(({ icon: Icon, title, body }) => (
+            ].map(({ icon: Icon, title, body }, i) => (
               <div
                 key={title}
-                className="rounded-xl border border-border bg-card p-6 shadow-card"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+                className="reveal group rounded-xl border border-border bg-card hover:border-accent/60 p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
-                <span className="inline-flex size-10 items-center justify-center rounded-lg bg-accent-gradient text-accent-foreground">
+                <span className="inline-flex size-10 items-center justify-center rounded-lg icon-pop bg-accent-gradient text-accent-foreground transition-transform duration-300 group-hover:scale-110">
                   <IconComponent name={iconMap[Icon] ?? Icon} />
                 </span>
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
@@ -382,17 +391,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="process" className="bg-hero-gradient py-20 text-primary-foreground sm:py-28">
+      <section id="process" className="relative overflow-hidden bg-hero-gradient py-20 text-primary-foreground sm:py-28">
+        <div className="pointer-events-none absolute -top-20 right-0 size-72 rounded-full bg-accent/10 blur-3xl animate-float" />
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow text-primary-foreground/60">Skill-to-licence roadmap</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Four steps from site to licence</h2>
+          <p className="section-eyebrow text-primary-foreground/60 reveal" data-reveal>Skill-to-licence roadmap</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>Four steps from site to licence</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-4">
-            {steps.map((s) => (
+            {steps.map((s, i) => (
               <div
                 key={s.n}
-                className="relative rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-6"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+                className="reveal group relative rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-foreground/10"
               >
-                <span className="font-display text-3xl font-bold text-accent">{s.n}</span>
+                <span className="font-display text-3xl font-bold text-accent transition-transform duration-300 group-hover:scale-110 inline-block">{s.n}</span>
                 <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
                 <p className="mt-2 text-sm text-primary-foreground/75">{s.body}</p>
               </div>
@@ -401,17 +413,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="tools" className="py-20 sm:py-28">
+      <section id="tools" className="bg-accent-soft py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="section-eyebrow">Free tools</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Check your readiness today</h2>
+          <p className="section-eyebrow reveal" data-reveal>Free tools</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>Check your readiness today</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {tools.map(({ icon: Icon, title, body, cta, href }) => (
+            {tools.map(({ icon: Icon, title, body, cta, href }, i) => (
               <div
                 key={title}
-                className="flex flex-col rounded-xl border border-border bg-card p-7 shadow-card"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+                className="reveal group flex flex-col rounded-xl border border-border bg-card hover:border-accent/60 p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
-                <IconComponent name={iconMap[Icon] ?? Icon} />
+                <span className="inline-flex size-10 items-center justify-center rounded-lg icon-pop bg-accent-gradient text-accent-foreground transition-transform duration-300 group-hover:scale-110">
+                  <IconComponent name={iconMap[Icon] ?? Icon} />
+                </span>
                 <h3 className="mt-4 text-lg font-semibold">{title}</h3>
                 <p className="mt-2 flex-1 text-sm text-muted-foreground">{body}</p>
                 <Button variant="outline" className="mt-6 self-start" asChild>
@@ -436,16 +452,16 @@ export default function HomePage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="section-eyebrow">Your experience matters</p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+            <p className="section-eyebrow reveal" data-reveal>Your experience matters</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
               Don't let years of experience go unrecognised
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-muted-foreground reveal" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
               Your workplace experience may be relevant to different career, assessment or
               licensing pathways. We help you understand how that experience fits into your next
               professional step.
             </p>
-            <Button variant="hero" size="xl" className="mt-8" asChild>
+            <Button variant="hero" size="xl" className="mt-8 reveal" data-reveal style={{ "--reveal-delay": "180ms" } as CSSProperties} asChild>
               <Link href="/skills-check">
                 {QUIZ_LABEL}
                 <ArrowRight />
@@ -453,10 +469,12 @@ export default function HomePage() {
             </Button>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
-            {recognitionPoints.map((point) => (
+            {recognitionPoints.map((point, i) => (
               <li
                 key={point}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 text-sm shadow-card"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 60}ms` } as CSSProperties}
+                className="reveal flex items-start gap-3 rounded-xl border border-border bg-card hover:border-accent/60 p-4 text-sm shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <svg className="mt-0.5 size-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                 <span>{point}</span>
@@ -468,20 +486,21 @@ export default function HomePage() {
 
       <Testimonials />
 
-      <section className="border-y border-border bg-secondary py-16">
+      <section className="relative overflow-hidden border-y border-border bg-hero-gradient py-16 text-primary-foreground">
+        <div className="pointer-events-none absolute -top-16 left-1/2 size-80 -translate-x-1/2 rounded-full bg-accent/20 blur-3xl animate-float" />
         <div className="mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-4xl reveal" data-reveal>
             Find out what your experience is already worth
           </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-primary-foreground/75 reveal" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
             A free skills audit maps your work history against qualification units, so you know
             exactly which evidence you already have and what is missing.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 reveal" data-reveal style={{ "--reveal-delay": "160ms" } as CSSProperties}>
             <Button variant="hero" size="xl" asChild>
               <a href={BOOKING_HREF} target="_blank" rel="noreferrer">{BOOKING_LABEL}</a>
             </Button>
-            <Button variant="outline" size="xl" asChild>
+            <Button variant="heroOutline" size="xl" asChild>
               <Link href="/skills-check">
                 Take the readiness quiz
               </Link>

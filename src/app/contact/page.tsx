@@ -137,8 +137,8 @@ export default function ContactPage() {
                 <Button type="submit" variant="hero" className="w-full sm:w-auto" disabled={status === "sending"}>
                   {status === "sending" ? "Sending…" : "Request callback"}
                 </Button>
-                {status === "sent" && <p className="text-sm font-medium text-accent">Thanks — your request has been sent to {EMAIL}. We'll be in touch within one business day.</p>}
-                {status === "error" && <p className="text-sm text-muted-foreground">We couldn't send it automatically, so we've opened your email app addressed to {EMAIL}. You can also call {PHONE}.</p>}
+                {status === "sent" && <p className="text-sm font-medium text-accent">Thanks — your request has been sent to <a href={EMAIL_HREF} className="underline hover:no-underline">{EMAIL}</a>. We'll be in touch within one business day.</p>}
+                {status === "error" && <p className="text-sm text-muted-foreground">We couldn't send it automatically, so we've opened your email app addressed to <a href={EMAIL_HREF} className="underline hover:text-accent">{EMAIL}</a>. You can also call {PHONE}.</p>}
               </form>
             </div>
           </div>

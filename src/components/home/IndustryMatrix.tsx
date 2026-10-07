@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight, FileCheck2, Landmark, Plane } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -544,9 +544,11 @@ export function IndustryMatrix() {
   return (
     <section id="industries" className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="section-eyebrow">Browse by pathway</p>
-        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Find your qualification in three steps</h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
+        <p className="section-eyebrow reveal" data-reveal>Browse by pathway</p>
+        <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
+          Find your qualification in three steps
+        </h2>
+        <p className="mt-3 max-w-2xl text-muted-foreground reveal" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
           Start with the outcome you want, choose your industry, and see the qualifications your
           experience can be mapped toward — plus who makes the final decision.
         </p>
@@ -555,22 +557,24 @@ export function IndustryMatrix() {
           Step 1 — What do you want to achieve?
         </p>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
-          {pathways.map(({ id, icon: Icon, name, quote, body }) => {
+          {pathways.map(({ id, icon: Icon, name, quote, body }, i) => {
             const active = pathway === id;
             return (
               <button
                 key={id}
                 type="button"
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
                 onClick={() => {
                   setPathway(id);
                   setSector(null);
                 }}
                 className={cn(
-                  "group flex flex-col rounded-xl border bg-card p-5 text-left shadow-card transition-colors",
+                  "group reveal flex flex-col rounded-xl border bg-card p-5 text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
                   active ? "border-accent ring-1 ring-accent" : "border-border hover:border-accent",
                 )}
               >
-                <span className="inline-flex size-10 items-center justify-center rounded-lg bg-accent-gradient text-accent-foreground">
+                <span className="icon-pop inline-flex size-10 items-center justify-center rounded-lg bg-accent-gradient text-accent-foreground transition-transform duration-300 group-hover:scale-110">
                   <Icon className="size-5" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold">{name}</h3>
@@ -578,7 +582,7 @@ export function IndustryMatrix() {
                 <p className="mt-2 flex-1 text-sm text-muted-foreground">{body}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground group-hover:text-accent">
                   {active ? "Selected" : "Choose this pathway"}
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </button>
             );
@@ -587,10 +591,10 @@ export function IndustryMatrix() {
 
         {pathway && (
           <>
-            <p className="mt-10 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            <p className="mt-10 text-sm font-semibold uppercase tracking-wide text-muted-foreground animate-card-in">
               Step 2 — Choose your industry
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2 animate-card-in" style={{ "--card-delay": "80ms" } as CSSProperties}>
               {availableSectors.map((c) => (
                 <button
                   key={c}
@@ -612,14 +616,15 @@ export function IndustryMatrix() {
 
         {pathway && sector && (
           <>
-            <p className="mt-10 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            <p className="mt-10 text-sm font-semibold uppercase tracking-wide text-muted-foreground animate-card-in">
               Step 3 — {sector} qualifications for "{activePathway?.quote}"
             </p>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {visible.map((r) => (
+              {visible.map((r, i) => (
                 <article
                   key={r.role + r.qualification}
-                  className="flex flex-col rounded-xl border border-border bg-card p-5 shadow-card"
+                  style={{ "--card-delay": `${Math.min(i * 70, 350)}ms` } as CSSProperties}
+                  className="animate-card-in flex flex-col rounded-xl border border-border bg-card p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-accent/60"
                 >
                   <span
                     className={cn(

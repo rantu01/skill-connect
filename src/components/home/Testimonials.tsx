@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import type React from "react";
 
 const testimonials = [
   {
@@ -55,17 +56,19 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="border-b border-border bg-secondary py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="section-eyebrow">What happens when skills get connected</p>
-        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+        <p className="section-eyebrow reveal" data-reveal>What happens when skills get connected</p>
+        <h2 className="mt-3 text-3xl font-bold sm:text-4xl reveal" data-reveal style={{ "--reveal-delay": "60ms" } as React.CSSProperties}>
           Real stories from tradespeople and professionals across Australia
         </h2>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((t) => (
+          {testimonials.map((t, i) => (
             <figure
               key={t.name}
-              className="flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-card"
+              data-reveal
+              style={{ "--reveal-delay": `${Math.min(i * 70, 350)}ms` } as React.CSSProperties}
+              className="reveal flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-accent/60"
             >
-              <Quote className="size-5 text-accent" aria-hidden="true" />
+              <Quote className="icon-pop size-5 text-accent" aria-hidden="true" />
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {t.quote}
               </blockquote>

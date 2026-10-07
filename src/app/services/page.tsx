@@ -23,9 +23,9 @@ const pillars = [
 ];
 
 const tools = [
-  { icon: "ClipboardList", title: "RPL & migration readiness quiz", body: "A 2-minute interactive tool assessing experience years, tax and pay records and site photo availability for an instant Portfolio Readiness Score.", cta: "Start the quiz" },
-  { icon: "FileCheck2", title: "Trade-specific evidence checklists", body: "Downloadable guides such as the Carpentry Evidence Vault Checklist and the Community Services Duty-Mapping Guide.", cta: "Get a checklist" },
-  { icon: "Globe2", title: "Migration document readiness checklist", body: "Reference letter structures, bank statement proofing and ANZSCO task mapping criteria for TRA and VETASSESS.", cta: "Download the guide" },
+  { icon: "ClipboardList", title: "RPL & migration readiness quiz", body: "A 2-minute interactive tool assessing experience years, tax and pay records and site photo availability for an instant Portfolio Readiness Score.", cta: "Start the quiz", href: "/rpl-readiness" },
+  { icon: "FileCheck2", title: "Trade-specific evidence checklists", body: "Downloadable guides such as the Carpentry Evidence Vault Checklist and the Community Services Duty-Mapping Guide.", cta: "Get a checklist", href: "/resources#rpl-evidence-guides" },
+  { icon: "Globe2", title: "Migration document readiness checklist", body: "Reference letter structures, bank statement proofing and ANZSCO task mapping criteria for TRA and VETASSESS.", cta: "Download the guide", href: "/resources#migration-forms" },
 ];
 
 export default function ServicesPage() {
@@ -88,17 +88,19 @@ export default function ServicesPage() {
           <p className="section-eyebrow text-primary-foreground/60">Free tools</p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Check your readiness today</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-             {tools.map(({ icon: Icon, title, body, cta }) => {
-               const IconComponent = iconMap[Icon];
-               return (
-                 <div key={title} className="flex flex-col rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-7">
-                   {IconComponent ? <IconComponent className="size-6 text-accent" /> : <span className="size-6 text-accent" />}
-                   <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-                   <p className="mt-2 flex-1 text-sm text-primary-foreground/75">{body}</p>
-                   <Button variant="heroOutline" className="mt-6 self-start">{cta}</Button>
-                 </div>
-               );
-             })}
+              {tools.map(({ icon: Icon, title, body, cta, href }) => {
+                const IconComponent = iconMap[Icon];
+                return (
+                  <div key={title} className="flex flex-col rounded-xl border border-primary-foreground/15 bg-primary-foreground/5 p-7">
+                    {IconComponent ? <IconComponent className="size-6 text-accent" /> : <span className="size-6 text-accent" />}
+                    <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+                    <p className="mt-2 flex-1 text-sm text-primary-foreground/75">{body}</p>
+                    <Button variant="heroOutline" className="mt-6 self-start" asChild>
+                      <Link href={href}>{cta}</Link>
+                    </Button>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>

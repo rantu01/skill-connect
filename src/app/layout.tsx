@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Barlow } from "next/font/google";
 import "./globals.css";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${archivo.variable} ${barlow.variable} font-body`}>
         {children}
+        <ScrollReveal />
       </body>
     </html>
   );
