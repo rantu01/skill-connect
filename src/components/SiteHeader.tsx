@@ -47,7 +47,7 @@ export function SiteHeader({
               key={link.href}
               href={link.href}
               className={cn(
-                "hover:text-foreground",
+                "transition-colors duration-200 hover:text-foreground",
                 pathname === link.href && "text-foreground"
               )}
             >
@@ -82,7 +82,7 @@ export function SiteHeader({
 
       {/* Mobile dropdown */}
       {open && (
-        <nav className="border-t border-border/60 bg-background px-6 py-4 lg:hidden">
+        <nav className="border-t border-border/60 bg-background px-6 py-4 lg:hidden animate-card-in">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
